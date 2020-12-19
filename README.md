@@ -1,3 +1,6 @@
+Submitter Name: Ahmad Sajid
+Email: ahmadsajid1989@gmail.com
+
 This is a demo app created for codemaster challenge.
 
 # Install Composer
