@@ -14,6 +14,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class BookingsRepository extends ServiceEntityRepository
 {
+    /**
+     * BookingsRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Bookings::class);
@@ -23,18 +28,59 @@ class BookingsRepository extends ServiceEntityRepository
     //  * @return Bookings[] Returns an array of Bookings objects
     //  */
 
-    public function findByFreeRoomField($room,$checkout)
+    /**
+     * @param $room
+     * @param $arival
+     *
+     * @return int|mixed|string
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function findByFreeRoomBycheckinAndCheckout($room,$arival, $checkout)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+
+        $sql = '
+            SELECT * FROM bookings b
+            join rooms r             
+            where  :arrival between b.arrival and b.checkout
+            or :checkout between b.arrival and b.checkout
+            and r.id = :room
+                      
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['arrival' => $arival,'checkout'=> $checkout, 'room' => $room]);
+
+        $result = count($stmt->fetchAll());
+
+        if ($result > 0){
+            $out = 1;
+        }else{
+            $out = 0;
+        }
+
+        return $out;
+    }
+
+    /**
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function findBookingDetails(): array
     {
 
-        return $this->createQueryBuilder('b')
-            ->innerJoin('b.roomBooking', 'r')
-            ->Where('r.id = :val')
-            ->andWhere('b.checkout >= :checkout')
-            ->setParameter('val', $room)
-            ->setParameter('checkout', $checkout)
-            ->getQuery()
-            ->getResult()
-        ;
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * FROM bookings b
+            left join payments p
+            on b.id = p.booking_id          
+            ';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
 
 

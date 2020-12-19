@@ -38,7 +38,7 @@ you can start the server in background:
 Access api doc from here:
     https://127.0.0.1:8000/api/doc
  
- How to plpay with the application:
+ How to play with the application:
  
  1. First register an Agent(user):
  
@@ -54,5 +54,14 @@ Access api doc from here:
  
  4. Create Customer:
      https://127.0.0.1:8000/api/customer/
+ 
+ 5. List bookings:
+      https://127.0.0.1:8000/api/booking/list
+ 
+ 6. Create booking:
+      https://127.0.0.1:8000/api/booking/create
+ 
+ 7. Checkout booking:
+      https://127.0.0.1:8000/api/booking/checkout 
  
  All the endpoints are provided in the postman collection, you cna find in the repo 

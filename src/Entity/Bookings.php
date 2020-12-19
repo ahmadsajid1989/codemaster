@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookingsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Swagger\Annotations as SWG;
@@ -69,11 +70,17 @@ class Bookings
 
     private $roomBooking;
 
+    /**
+     * Bookings constructor.
+     */
     public function __construct()
     {
         $this->roomBooking = new ArrayCollection();
     }
 
+    /**
+     * @param Rooms $room
+     */
     public function addRoomBooking(Rooms $room){
         if ($this->roomBooking->contains($room)) {
             return;
@@ -83,17 +90,27 @@ class Bookings
     }
 
 
-
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getArrival(): ?\DateTimeInterface
     {
         return $this->arrival;
     }
 
+    /**
+     * @param \DateTimeInterface $arrival
+     *
+     * @return $this
+     */
     public function setArrival(\DateTimeInterface $arrival): self
     {
         $this->arrival = $arrival;
@@ -101,11 +118,19 @@ class Bookings
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getCheckout(): ?\DateTimeInterface
     {
         return $this->checkout;
     }
 
+    /**
+     * @param \DateTimeInterface $checkout
+     *
+     * @return $this
+     */
     public function setCheckout(\DateTimeInterface $checkout): self
     {
         $this->checkout = $checkout;
@@ -113,11 +138,19 @@ class Bookings
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getBookType(): ?string
     {
         return $this->book_type;
     }
 
+    /**
+     * @param string|null $book_type
+     *
+     * @return $this
+     */
     public function setBookType(?string $book_type): self
     {
         $this->book_type = $book_type;
@@ -125,11 +158,19 @@ class Bookings
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getBookTime(): ?\DateTimeInterface
     {
         return $this->book_time;
     }
 
+    /**
+     * @param \DateTimeInterface $book_time
+     *
+     * @return $this
+     */
     public function setBookTime(\DateTimeInterface $book_time): self
     {
         $this->book_time = $book_time;
@@ -152,6 +193,13 @@ class Bookings
     {
         $this->customer_id = $customer_id;
     }
+
+
+    public function getRoomBooking()
+    {
+        return $this->roomBooking;
+    }
+
 
 
 }

@@ -164,7 +164,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDgzODI2NDksImV4cCI6MTYwODM4OTg0OSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtYWQifQ.TObcbTnd3bL5KzwUq81Y6HwLgojWgTt5XVQhYkVrBXCr-hMAMBggVpQpAx5RX03BWjPLvfBCWRgtOvlCV_zj3KJKGJsArMJ-RaVuLHkrXxOxLCsRvo5iyAdfAZU5YoZ2RFtrv6LNkRapRqWUlWI08SST5MAnN6OU6dcz3W_LE1eNhVVNFNyVMWt7ccVXBfDV8A8nz0shZVKN29u13EkkIZ3LZ4aQmWJh0p1alHIBcE-ETzt21-dx8ymTta-d0JdSUfZd7WMVZpQsxz-TI-T83OU_jmbqIVxaYZIWkrbLLnSpU7Hz8ZCcDNdzEsTRpIxOtJXf6Yaxzu10seqc-DMzBnMpWk6b5-vVk4pvZvls2FbEHkDEaaQ5IqSA8QNzzbWFJsZ6EW8zfRcus_90vadaYOP8vyrl6cYOyP9F_wfkNpefmqhRPNHYvwMy_sClGW_AYMQhgWJrUJIyazG1j54bRp_b12V0brtTXETo7NfV6tk33sEGvn8D6UxVAA8KN1vKht3ieM2m_FeV0fleBYkn_ePHazc0CDLS5-sx86XqODO8gh2XgL8dhqqUmVlRU-MIEwCEgYSyfX_tqh1nNF8umvuUoOihYVy8t0z0S9OxfZn3aJxnLjjDPzRZohqC5ZoWwK2v0hf8cQ5FqQXaIIlR1FtqUPqicMw1qNg5nCOHOnw",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDgzOTI5MzksImV4cCI6MTYwODQwMDEzOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtYWQifQ.dCayzU2CZ0EbwlFxm5TBFadJTsGAKEWpjn-JBdfFW0jfynZ8bTfe-31U-MQbJfY4Siwlu4Y7NUmPVdTWbh05vQFYxTYOdDNlcAx_2VwslLNuumjbbNSydgbegTrOPw6SHDBiukDpDtSCSkaX5ExERARMssAx_eTHrj5athnN06yYxT-BKH_TXiCajqaunzlhFSMXTfY3P1984m7N39EIfykjPB5aza6jGHnOa4PC5cHLCOJEv1Q1pHuWVJcPsTJg8kIDbjap0n5hlRFRzKeXiWUcwNP8gJGoqhISCoQNVGIhO_J16KOfaMesEBxn9UdFjuIcqCCwnde2jM8eb7BunlDQbVmwfQyt7jVpjrS8ky4CUL1qmUDTTw28fSnEZM1GioXK-jtxXAlD48kUC8xJ-0r6CFKHR8lAew_ZAwEtiTny9OMngaGEHZ_1ipuhrdAeOTGGECk4GLCVaD-FjrzlTud6pwIP4---IkRQjWbKyb3C0ql6KLC9o0ZZtxYES7kxv_vKMOsZbcwc_In1pWgr9e-O1gp6AN4sUGNVjkurJsN_whrUwo76m8EFQ1iiG47V7z8Q6jM2v-pEAZy94A8e9Wqhipo0Jcn4w-dkoDMC4NtR90Qd1yA_Jgw1T7tLgWxoRrDT8FLY5iuaF5Cnky-0Z5BtsPNh2qgvq9xulXbzc5s",
 							"type": "string"
 						}
 					]
@@ -173,7 +173,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"room_number\": 101,\r\n    \"customer_id\": 1,\r\n    \"book_type\": \"pending\",\r\n    \"arrival\": \"28-12-2020 14:00:00\",\r\n    \"checkout\": \"30-12-2020\"\r\n    \r\n}",
+					"raw": "{\r\n    \"room_number\": 101,\r\n    \"customer_id\": 1,\r\n    \"book_type\": \"pending\",\r\n    \"arrival\": \"28-12-2020 14:00:00\",\r\n    \"checkout\": \"31-12-2020\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -194,6 +194,83 @@
 						"api",
 						"booking",
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Checkout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDgzOTI5MzksImV4cCI6MTYwODQwMDEzOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtYWQifQ.dCayzU2CZ0EbwlFxm5TBFadJTsGAKEWpjn-JBdfFW0jfynZ8bTfe-31U-MQbJfY4Siwlu4Y7NUmPVdTWbh05vQFYxTYOdDNlcAx_2VwslLNuumjbbNSydgbegTrOPw6SHDBiukDpDtSCSkaX5ExERARMssAx_eTHrj5athnN06yYxT-BKH_TXiCajqaunzlhFSMXTfY3P1984m7N39EIfykjPB5aza6jGHnOa4PC5cHLCOJEv1Q1pHuWVJcPsTJg8kIDbjap0n5hlRFRzKeXiWUcwNP8gJGoqhISCoQNVGIhO_J16KOfaMesEBxn9UdFjuIcqCCwnde2jM8eb7BunlDQbVmwfQyt7jVpjrS8ky4CUL1qmUDTTw28fSnEZM1GioXK-jtxXAlD48kUC8xJ-0r6CFKHR8lAew_ZAwEtiTny9OMngaGEHZ_1ipuhrdAeOTGGECk4GLCVaD-FjrzlTud6pwIP4---IkRQjWbKyb3C0ql6KLC9o0ZZtxYES7kxv_vKMOsZbcwc_In1pWgr9e-O1gp6AN4sUGNVjkurJsN_whrUwo76m8EFQ1iiG47V7z8Q6jM2v-pEAZy94A8e9Wqhipo0Jcn4w-dkoDMC4NtR90Qd1yA_Jgw1T7tLgWxoRrDT8FLY5iuaF5Cnky-0Z5BtsPNh2qgvq9xulXbzc5s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_id\": 1,\r\n    \"booking_id\": 1,\r\n    \"checkout\": \"31-12-2020\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://127.0.0.1:8000/api/booking/checkout",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"booking",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bookings List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDgzOTI5MzksImV4cCI6MTYwODQwMDEzOSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtYWQifQ.dCayzU2CZ0EbwlFxm5TBFadJTsGAKEWpjn-JBdfFW0jfynZ8bTfe-31U-MQbJfY4Siwlu4Y7NUmPVdTWbh05vQFYxTYOdDNlcAx_2VwslLNuumjbbNSydgbegTrOPw6SHDBiukDpDtSCSkaX5ExERARMssAx_eTHrj5athnN06yYxT-BKH_TXiCajqaunzlhFSMXTfY3P1984m7N39EIfykjPB5aza6jGHnOa4PC5cHLCOJEv1Q1pHuWVJcPsTJg8kIDbjap0n5hlRFRzKeXiWUcwNP8gJGoqhISCoQNVGIhO_J16KOfaMesEBxn9UdFjuIcqCCwnde2jM8eb7BunlDQbVmwfQyt7jVpjrS8ky4CUL1qmUDTTw28fSnEZM1GioXK-jtxXAlD48kUC8xJ-0r6CFKHR8lAew_ZAwEtiTny9OMngaGEHZ_1ipuhrdAeOTGGECk4GLCVaD-FjrzlTud6pwIP4---IkRQjWbKyb3C0ql6KLC9o0ZZtxYES7kxv_vKMOsZbcwc_In1pWgr9e-O1gp6AN4sUGNVjkurJsN_whrUwo76m8EFQ1iiG47V7z8Q6jM2v-pEAZy94A8e9Wqhipo0Jcn4w-dkoDMC4NtR90Qd1yA_Jgw1T7tLgWxoRrDT8FLY5iuaF5Cnky-0Z5BtsPNh2qgvq9xulXbzc5s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8000/api/booking/list",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"booking",
+						"list"
 					]
 				}
 			},

@@ -7,6 +7,8 @@ use App\Entity\Bookings;
 use App\Entity\Customers;
 use App\Entity\Payments;
 use App\Entity\Rooms;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 
@@ -134,11 +136,11 @@ class BookingController extends AbstractController
             return new JsonResponse(["result"=> "failed","message" => "booking type must be one of these pending, partial, confirmed"]);
         }
 
-        $booking = $entityManager->getRepository(Bookings::class)->findByFreeRoomField($room_number,$checkout);
+        $isBooked = $entityManager->getRepository(Bookings::class)->findByFreeRoomBycheckinAndCheckout($room->getId(),$arrival, $checkout);
+        if($isBooked){
 
-
-
-
+            return new JsonResponse(['result'=> 'failed', 'message' => 'room is not free given arival and checkout time']);
+        }
 
         try {
             $book = new Bookings();
@@ -170,7 +172,151 @@ class BookingController extends AbstractController
             return new JsonResponse(['result' => "failed", "message" => $e->getMessage()]);
         }
 
+    }
+
+    /**
+     * @param Request $request
+     * @SWG\Response(
+     *     response=200,
+     *     description="Operation successfull",
+     *
+     *     @SWG\Schema(
+     *         type="array",
+     *         @SWG\Items(ref=@Model(type=Bookings::class))
+     *     )
+     * )
+     *
+     * @SWG\Response(
+     *     response=400,
+     *     description="Default error state when requested operation has failed",
+     *
+     *
+     * )
+     *
+     * @SWG\Response(
+     *     response=405,
+     *     description="Method not allowed",
+     *
+     *
+     * )
+     *
+     * @return JsonResponse
+     * @IsGranted("ROLE_USER")
+     * @Route("/api/booking/checkout", name="checkout",methods={"POST"})
+     */
+    public function checkout(Request $request): JsonResponse
+    {
+        if($request->getMethod() != "POST"){
+            return new JsonResponse("Only POST method is allowed", 405);
+        }
+
+        $body = $request->getContent();
+        $data = json_decode($body, true);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if(array_key_exists('checkout', $data)) {
+            $checkout = $data['checkout'];
+            $checkout = date('Y-m-d H:i:s', strtotime($checkout));
+        }else{
+            return new JsonResponse(['result'=>'failed', 'message'=> 'checkout is required'], 400);
+        }
+
+        if(array_key_exists('customer_id', $data)) {
+            $customer_id = $data['customer_id'];
+        }else{
+            return new JsonResponse(['result'=>'failed', 'message'=> 'customer id is required'], 400);
+        }
+
+        if(array_key_exists('booking_id', $data)) {
+            $booking_id = $data['booking_id'];
+        }else{
+            return new JsonResponse(['result'=>'failed', 'message'=> 'booking_id is required'], 400);
+        }
+
+        $customer = $entityManager->getRepository(Customers::class)->findBy(['id'=> $customer_id]);
+
+        if(!$customer){
+            return new JsonResponse(["result"=> "failed","message" => "customer id not found or invalid type supplied"]);
+        }
+
+        /** @var  $booking Bookings */
+        $booking = $entityManager->getRepository(Bookings::class)->findOneBy(['id'=> $booking_id]);
+        if(!$booking){
+            return new JsonResponse(["result"=> "failed","message" => "booking id not found or invalid type supplied"]);
+        }
+
+        /** @var  $payments Payments */
+        $payments = $entityManager->getRepository(Payments::class)->findOneBy(['booking_id'=> $booking_id]);
+        $paid= $payments->getAmount();
+        /** @var  $room_data Rooms */
+        $room_data = $booking->getRoomBooking();
+        foreach ($room_data as $room){
+            $room_rate = $room->getPrice();
+        }
+        $due = ($room_rate - $paid);
+
+        if($due > 0){
+            if(array_key_exists('payment', $data)) {
+                $paying_amount = $data['payment'];
+                if($due != $paying_amount){
+                    return new JsonResponse(['result'=>'failed', 'message'=> 'due is greater that paying amount'], 400);
+                }
+            }else{
+                return new JsonResponse(['result'=>'failed', 'message'=> 'Payment is due, hence payment is required'], 400);
+            }
+        }
+        $payments->setAmount($paying_amount);
+        $booking->setBookType('complete');
+
+        // updating booking information
+        $entityManager->persist($payments);
+        $entityManager->persist($booking);
+        $entityManager->flush();
+
+        return new JsonResponse(['result'=> 'success', 'message'=> "checkout successfully"]);
 
     }
+
+    /**
+     * @SWG\Response(
+     *     response=200,
+     *     description="Operation successfull",
+     *
+     *     @SWG\Schema(
+     *         type="array",
+     *         @SWG\Items(ref=@Model(type=Bookings::class))
+     *     )
+     * )
+     *
+     * @SWG\Response(
+     *     response=400,
+     *     description="Default error state when requested operation has failed",
+     *
+     *
+     * )
+     *
+     * @SWG\Response(
+     *     response=405,
+     *     description="Method not allowed",
+     *
+     *
+     * )
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     *
+     * @return JsonResponse
+     *
+     * @IsGranted("ROLE_USER")
+     * @Route("/api/booking/list", name="list_booking",methods={"GET"})
+     */
+
+    public function listBookings(Request $request, EntityManagerInterface $em): JsonResponse
+    {
+        $bookings = $em->getRepository(Bookings::class)->findBookingDetails();
+
+        return new JsonResponse($bookings, 200);
+    }
+
+    
 
 }
