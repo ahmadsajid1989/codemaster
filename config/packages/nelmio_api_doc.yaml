@@ -1,0 +1,9 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: CodeMasters - 2020 Backend Challange APP
+            description: This is api facilitates to book room for customer
+            version: 1.0.0
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/(?!/doc$) # Accepts routes under /api except /api/doc

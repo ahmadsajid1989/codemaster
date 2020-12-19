@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "1e0e6748-9ea7-495f-bd9a-9b12236cee91",
+		"name": "codemaster",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ahmadsajid1989@gmail.com\",\r\n    \"username\": \"ahmad\",\r\n    \"plainPassword\": \"ahmad123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://127.0.0.1:8000/auth/register",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ahmad\",\r\n    \"password\": \"ahmad123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://127.0.0.1:8000/api/login_check",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login_check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Room",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDgzNzUxOTQsImV4cCI6MTYwODM4MjM5NCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtYWQifQ.L--EzI8BA1rlwoXSri7HElc26IUkqeJeFFGt0o9nmVnof00jlDVbc-uODJNkLiNruwGt4QoDsDe9iBq2hAQpG9NAPHGbZtIbv5T8JXTBndONvhlCsO-wUh_KX2Qe73AmvukAh0m3BCalgiMfyNWCqye_Z8KJzDHRdro-RTXGI7iqYCMdqS9dSph9hvCZ8xX4kWF1A2QpTp0cWh1twQXPoSBID1Mw7joFbQJIU7-J0yo564SMfQRDbVRsGxegJ99mIKYX2T7f7TCLsK_JEX8R2t12MXB37CiC9HuMm2H0LKeRgT4cujE2hIjPQTM1EivoU1IDX_LsfHUjXRau1sduVK8Z_BgBou3h6o_tLdl_yB7Xm9xppw9VS0iJVutr5JC7FvxuF1ZuuCpqaX-Vg920d4FAE_7MyKjk945REcGidKslLWWl73bGvvc7UDhRl-Ss3RtPRt3Pg7XpD3P5vm7HXgIdf0ROtrR7Zkei2VqQ3mKmuGm7EMI-RfA29BpPuHl5tBa-Mv_pWnZI0rXN4cQrVTDv2nC4OAEs0USZx57jbGGv21z5OmRd9BOp7D8LUVMi3Tu1rFCM2cd1vXZNkt_srjUG7NqPeLRkv69Zc0-5Pq1QNzG3IiY4nKxdxSt4Ed4YlTIcZz7KOoBizSHmTylgKhGaKfoSdT1yb_20G-SLeyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"room_number\": 109,\r\n    \"price\": 7000,\r\n    \"max_person\": 2,\r\n    \"room_type\": \"juniur suite\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://127.0.0.1:8000/api/api/rooms/",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"api",
+						"rooms",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDgzNzUxOTQsImV4cCI6MTYwODM4MjM5NCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtYWQifQ.L--EzI8BA1rlwoXSri7HElc26IUkqeJeFFGt0o9nmVnof00jlDVbc-uODJNkLiNruwGt4QoDsDe9iBq2hAQpG9NAPHGbZtIbv5T8JXTBndONvhlCsO-wUh_KX2Qe73AmvukAh0m3BCalgiMfyNWCqye_Z8KJzDHRdro-RTXGI7iqYCMdqS9dSph9hvCZ8xX4kWF1A2QpTp0cWh1twQXPoSBID1Mw7joFbQJIU7-J0yo564SMfQRDbVRsGxegJ99mIKYX2T7f7TCLsK_JEX8R2t12MXB37CiC9HuMm2H0LKeRgT4cujE2hIjPQTM1EivoU1IDX_LsfHUjXRau1sduVK8Z_BgBou3h6o_tLdl_yB7Xm9xppw9VS0iJVutr5JC7FvxuF1ZuuCpqaX-Vg920d4FAE_7MyKjk945REcGidKslLWWl73bGvvc7UDhRl-Ss3RtPRt3Pg7XpD3P5vm7HXgIdf0ROtrR7Zkei2VqQ3mKmuGm7EMI-RfA29BpPuHl5tBa-Mv_pWnZI0rXN4cQrVTDv2nC4OAEs0USZx57jbGGv21z5OmRd9BOp7D8LUVMi3Tu1rFCM2cd1vXZNkt_srjUG7NqPeLRkv69Zc0-5Pq1QNzG3IiY4nKxdxSt4Ed4YlTIcZz7KOoBizSHmTylgKhGaKfoSdT1yb_20G-SLeyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Ahmad\",\r\n    \"last_name\": \"Sajid\",\r\n    \"email\": \"ahmadsajid1989@gmail.com\",\r\n    \"phone\": \"01678114307\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://127.0.0.1:8000/api/customer/",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"customer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Booking",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDgzODI2NDksImV4cCI6MTYwODM4OTg0OSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWhtYWQifQ.TObcbTnd3bL5KzwUq81Y6HwLgojWgTt5XVQhYkVrBXCr-hMAMBggVpQpAx5RX03BWjPLvfBCWRgtOvlCV_zj3KJKGJsArMJ-RaVuLHkrXxOxLCsRvo5iyAdfAZU5YoZ2RFtrv6LNkRapRqWUlWI08SST5MAnN6OU6dcz3W_LE1eNhVVNFNyVMWt7ccVXBfDV8A8nz0shZVKN29u13EkkIZ3LZ4aQmWJh0p1alHIBcE-ETzt21-dx8ymTta-d0JdSUfZd7WMVZpQsxz-TI-T83OU_jmbqIVxaYZIWkrbLLnSpU7Hz8ZCcDNdzEsTRpIxOtJXf6Yaxzu10seqc-DMzBnMpWk6b5-vVk4pvZvls2FbEHkDEaaQ5IqSA8QNzzbWFJsZ6EW8zfRcus_90vadaYOP8vyrl6cYOyP9F_wfkNpefmqhRPNHYvwMy_sClGW_AYMQhgWJrUJIyazG1j54bRp_b12V0brtTXETo7NfV6tk33sEGvn8D6UxVAA8KN1vKht3ieM2m_FeV0fleBYkn_ePHazc0CDLS5-sx86XqODO8gh2XgL8dhqqUmVlRU-MIEwCEgYSyfX_tqh1nNF8umvuUoOihYVy8t0z0S9OxfZn3aJxnLjjDPzRZohqC5ZoWwK2v0hf8cQ5FqQXaIIlR1FtqUPqicMw1qNg5nCOHOnw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"room_number\": 101,\r\n    \"customer_id\": 1,\r\n    \"book_type\": \"pending\",\r\n    \"arrival\": \"28-12-2020 14:00:00\",\r\n    \"checkout\": \"30-12-2020\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://127.0.0.1:8000/api/booking/create",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"booking",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
